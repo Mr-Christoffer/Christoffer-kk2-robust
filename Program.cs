@@ -23,25 +23,32 @@ while (true)
         {
             Console.Write("Pris: ");
 
-        try
-        {
-            int price = int.Parse(Console.ReadLine());
-            list.Add(new Item(name, price));
-            break;
+            try
+            {
+                int price = int.Parse(Console.ReadLine());
+                list.Add(new Item(name, price));
+                break;
+            }
+            catch
+            {
+                System.Console.WriteLine("Ange endast heltal som pris. V.G. Försök igen!");
+            }
         }
-        catch
-        {
-            System.Console.WriteLine("Ange endast heltal som pris. V.G. Försök igen!");
-        }
-        }
-        
+
 
     }
     else if (choice == 2)
     {
         Console.Write("Nummer: ");
-        int number = int.Parse(Console.ReadLine());
-        list.RemoveAt(number);
+        try
+        {
+            int number = int.Parse(Console.ReadLine());
+            list.RemoveAt(number);
+        }
+        catch
+        {
+            System.Console.WriteLine("Varan finns inte och kan därför inte tas bort. Du går nu tillbaka till menyn");
+        }
     }
     else if (choice == 3)
     {
