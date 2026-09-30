@@ -15,3 +15,12 @@ If user types a non-number character as price, the program will crash.
 Items from file doesnt show their name when printed.
 
 * Fixed by changing split to ReadAllLines in Load-method
+
+## Error 4:
+Program crashes when user tries to delete a non-existing item
+
+* Fixed by adding a try catch in program.cs
+
+## Error 5:
+Program crashes if user enters a character which is not a choice (1-5)
+* Fixed by putting the whole meny under an if-block

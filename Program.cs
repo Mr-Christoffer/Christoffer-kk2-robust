@@ -13,64 +13,72 @@ while (true)
     Console.WriteLine("5. Avsluta");
     Console.Write("Välj: ");
 
-    int choice = int.Parse(Console.ReadLine());
-
-    if (choice == 1)
+    string input = Console.ReadLine();
+    if (int.TryParse(input, out int choice))
     {
-        Console.Write("Namn: ");
-        string name = Console.ReadLine();
-        while (true)
+        if (choice == 1)
         {
-            Console.Write("Pris: ");
+            Console.Write("Namn: ");
+            string name = Console.ReadLine();
+            while (true)
+            {
+                Console.Write("Pris: ");
 
+                try
+                {
+                    int price = int.Parse(Console.ReadLine());
+                    list.Add(new Item(name, price));
+                    break;
+                }
+                catch
+                {
+                    System.Console.WriteLine("Ange endast heltal som pris. V.G. Försök igen!");
+                }
+            }
+
+
+        }
+        else if (choice == 2)
+        {
+            Console.Write("Nummer: ");
             try
             {
-                int price = int.Parse(Console.ReadLine());
-                list.Add(new Item(name, price));
-                break;
+                int number = int.Parse(Console.ReadLine());
+                list.RemoveAt(number);
             }
             catch
             {
-                System.Console.WriteLine("Ange endast heltal som pris. V.G. Försök igen!");
+                System.Console.WriteLine("Varan finns inte och kan därför inte tas bort. Du går nu tillbaka till menyn");
             }
         }
+        else if (choice == 3)
+        {
+            list.Save();
+        }
+        else if (choice == 4)
+        {
+            Console.Write("Namn att söka efter: ");
+            string wanted = Console.ReadLine();
+            Item found = list.Find(wanted);
+
+            if (found == null)
+            {
+                Console.WriteLine("Varan finns inte i listan.");
+            }
+            else
+            {
+                Console.WriteLine($"Hittade: {found}");
+            }
+        }
+        else if (choice == 5)
+        {
+            break;
+        }
+    }
+    else
+    {
+        System.Console.WriteLine("Ogiltigt menyval. Försök igen!");
+    }
 
 
-    }
-    else if (choice == 2)
-    {
-        Console.Write("Nummer: ");
-        try
-        {
-            int number = int.Parse(Console.ReadLine());
-            list.RemoveAt(number);
-        }
-        catch
-        {
-            System.Console.WriteLine("Varan finns inte och kan därför inte tas bort. Du går nu tillbaka till menyn");
-        }
-    }
-    else if (choice == 3)
-    {
-        list.Save();
-    }
-    else if (choice == 4)
-    {
-        Console.Write("Namn att söka efter: ");
-        string wanted = Console.ReadLine();
-        Item found = list.Find(wanted);
-
-        if (found == null)
-        {
-            Console.WriteLine("Varan finns inte i listan.");
-        }
-        else
-        {
-            Console.WriteLine($"Hittade: {found}");
-        }
-    }
-    else if (choice == 5)
-    {
-        break;
-    }
 }
