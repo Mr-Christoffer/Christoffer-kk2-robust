@@ -82,7 +82,8 @@ class ShoppingList
     public void Load()
     {
         string text = File.ReadAllText(path);
-        string[] lines = text.Split('\n');
+        string[] lines = File.ReadAllLines(path);
+        //string[] lines = text.Split('\n');
 
         foreach (string line in lines)
         {
