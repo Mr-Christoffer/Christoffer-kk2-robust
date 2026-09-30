@@ -19,9 +19,23 @@ while (true)
     {
         Console.Write("Namn: ");
         string name = Console.ReadLine();
-        Console.Write("Pris: ");
-        int price = int.Parse(Console.ReadLine());
-        list.Add(new Item(name, price));
+        while (true)
+        {
+            Console.Write("Pris: ");
+
+        try
+        {
+            int price = int.Parse(Console.ReadLine());
+            list.Add(new Item(name, price));
+            break;
+        }
+        catch
+        {
+            System.Console.WriteLine("Ange endast heltal som pris. V.G. Försök igen!");
+        }
+        }
+        
+
     }
     else if (choice == 2)
     {
